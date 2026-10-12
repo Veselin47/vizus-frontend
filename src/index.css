@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  /* Тъмно морско синьо/графит (вместо предишното тъмно зелено) за отличен контраст */
+  --color-ink: #0F172A;
+  
+  /* Чисто медицинско бяло с много лек синкав оттенък (вместо предишното бежово) */
+  --color-paper: #F8FAFC;
+  
+  /* Светло синьо за акценти и Hover ефекти (вместо златистото) */
+  --color-lens: #3B82F6;
+  
+  /* Основният цвят от логото Визус - професионално медицинско синьо */
+  --color-teal: #235B9C;
+  
+  /* Хладно сиво за вторични текстове, съобразено със синята гама */
+  --color-stone: #64748B;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
