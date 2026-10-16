@@ -19,7 +19,17 @@
   --font-display: "Fraunces", serif;
   --font-body: "Manrope", sans-serif;
 }
+/* hover ефектите да важат само за устройства, които наистина имат hover */
+@custom-variant can-hover (@media (hover: hover));
 
+/* iOS Safari увеличава страницата при фокус на поле с шрифт под 16px */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
 body {
   font-family: var(--font-body);
   background-color: var(--color-paper);

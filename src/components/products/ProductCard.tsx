@@ -13,34 +13,28 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
   const showToast = useToastStore((state) => state.showToast);
-  
-  // Добавяме локален стейт, за да проследяваме кога е натиснат бутонът
+
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
-    // 1. Добавяме в глобалния стейт (количката)
     addItem({
       productId: product.id,
       name: product.name,
       price: product.price,
       imageUrl: product.imageUrl,
     });
-    
-    // 2. Показваме глобалното съобщение (Toast) долу вдясно
+
     showToast(`${product.name} е добавен в количката`);
 
-    // 3. Задействаме локалната анимация на бутона
     setIsAdded(true);
-    
-    // Връщаме бутона в нормално състояние след 2 секунди
     setTimeout(() => {
       setIsAdded(false);
     }, 2000);
   };
 
   return (
-    <div className="group bg-white rounded-2xl border border-ink/10 shadow-sm p-4 hover:shadow-md transition-shadow duration-300">
-      <div className="relative aspect-square rounded-xl overflow-hidden bg-teal/5 mb-4">
+    <div className="group bg-white rounded-2xl border border-ink/10 shadow-sm p-3 sm:p-4 hover:shadow-md transition-shadow duration-300">
+      <div className="relative aspect-square rounded-xl overflow-hidden bg-teal/5 mb-3 sm:mb-4">
         {product.imageUrl ? (
           <img
             src={`${API_BASE_URL}${product.imageUrl}`}
@@ -53,14 +47,15 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
-        {/* Анимиран бутон за добавяне */}
+        {/* Анимиран бутон за добавяне: на тъчскрийн е винаги видим, на устройства с hover - при посочване */}
         <button
           onClick={handleAddToCart}
-          disabled={isAdded} // Предотвратява спамене на кликове докато трае анимацията
-          className={`absolute bottom-3 right-3 text-xs px-4 py-2 rounded-full flex items-center justify-center min-w-[90px] shadow-sm transition-all duration-300
-            ${isAdded 
-              ? 'bg-teal text-paper opacity-100' // Когато е добавено: синьо и винаги видимо
-              : 'bg-ink text-paper opacity-0 group-hover:opacity-100 hover:scale-105 hover:shadow-md' // По подразбиране: тъмно и видимо само на hover
+          disabled={isAdded}
+          className={`absolute bottom-2 right-2 sm:bottom-3 sm:right-3 text-xs px-3 sm:px-4 py-2.5 sm:py-2 rounded-full flex items-center justify-center min-w-[90px] shadow-sm transition-all duration-300
+            ${
+              isAdded
+                ? 'bg-teal text-paper opacity-100'
+                : 'bg-ink text-paper can-hover:opacity-0 can-hover:group-hover:opacity-100 can-hover:focus-visible:opacity-100 hover:scale-105 hover:shadow-md'
             }
           `}
         >
@@ -95,8 +90,8 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       <span className="text-xs text-teal font-medium uppercase tracking-wider">{product.categoryName}</span>
-      <h3 className="font-display text-lg text-ink mt-1 truncate">{product.name}</h3>
-      <p className="text-sm font-semibold text-ink/70 mt-1">{product.price.toFixed(2)} лв.</p>
+      <h3 className="font-display text-base sm:text-lg text-ink mt-1 truncate">{product.name}</h3>
+      <p className="text-sm font-semibold text-ink/70 mt-1">{product.price.toFixed(2)} €</p>
     </div>
   );
 }

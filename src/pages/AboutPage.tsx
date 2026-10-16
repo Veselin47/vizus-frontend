@@ -23,8 +23,8 @@ export function AboutPage() {
       <div className="relative overflow-hidden">
         <DecorativeBlob color="teal" className="-top-40 -left-40" />
 
-        <div className="relative max-w-3xl mx-auto px-6 py-20 text-center">
-          <h1 className="font-display text-5xl text-ink leading-tight">
+        <div className="relative max-w-3xl mx-auto px-6 py-12 md:py-20 text-center">
+          <h1 className="font-display text-4xl sm:text-5xl text-ink leading-tight">
             Грижа за зрението ти,
             <br />
             с внимание към детайла.
@@ -40,18 +40,18 @@ export function AboutPage() {
       {featured && (
         <div className="max-w-5xl mx-auto px-6 pb-20">
           <ScrollReveal>
-            <div className="bg-white border border-ink/10 rounded-3xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="bg-white border border-ink/10 rounded-3xl p-6 sm:p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="flex justify-center">
                 {featured.imageUrl ? (
                   <img
                     src={getImageUrl(featured.imageUrl) ?? ''}
                     alt={featured.fullName}
                     // Задаваме ширина, портретна пропорция (3:4) и леко заоблени ъгли
-                    className="w-64 md:w-72 aspect-[3/4] object-cover rounded-2xl shadow-sm"
+                    className="w-full max-w-[16rem] md:max-w-[18rem] aspect-[3/4] object-cover rounded-2xl shadow-sm"
                   />
                 ) : (
                   // Променяме и заместителя, за да отговаря на новата форма, ако няма снимка
-                  <div className="w-64 md:w-72 aspect-[3/4] rounded-2xl bg-teal/15 flex items-center justify-center text-teal text-7xl font-display">
+                  <div className="w-full max-w-[16rem] md:max-w-[18rem] aspect-[3/4] rounded-2xl bg-teal/15 flex items-center justify-center text-teal text-7xl font-display">
                     {featured.fullName.charAt(0)}
                   </div>
                 )}

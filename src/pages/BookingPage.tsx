@@ -142,7 +142,7 @@ export function BookingPage() {
               </div>
 
               {slotsQuery.isLoading && (
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                   {Array.from({ length: 8 }).map((_, i) => (
                     <div key={i} className="h-10 bg-ink/8 rounded-full animate-pulse" />
                   ))}
@@ -152,7 +152,7 @@ export function BookingPage() {
                 <p className="text-ink/40 text-sm">Няма свободни часове за тази дата.</p>
               )}
 
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                 {slots.map((slot) => {
                   const time = new Date(slot.start).toLocaleTimeString('bg-BG', {
                     hour: '2-digit',

@@ -54,10 +54,10 @@ export function DoctorDetailPage() {
             <img
               src={getImageUrl(doctor.imageUrl) ?? ''}
               alt={doctor.fullName}
-              className="w-full aspect-square object-cover rounded-2xl"
+              className="w-full max-w-xs mx-auto md:max-w-none aspect-square object-cover rounded-2xl"
             />
           ) : (
-            <div className="w-full aspect-square rounded-2xl bg-teal/15 flex items-center justify-center text-teal text-6xl font-display">
+            <div className="w-full max-w-xs mx-auto md:max-w-none aspect-square rounded-2xl bg-teal/15 flex items-center justify-center text-teal text-6xl font-display">
               {doctor.fullName.charAt(0)}
             </div>
           )}

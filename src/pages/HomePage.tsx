@@ -106,10 +106,10 @@ export function HomePage() {
         ref={heroRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setPupil({ x: 0, y: 0 })}
-        className="relative max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+        className="relative max-w-6xl mx-auto px-6 py-12 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
       >
         <div>
-          <h1 className="font-display text-5xl md:text-6xl text-ink leading-[1.05]">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-ink leading-[1.05]">
             Виждай света
             <br />
             по-ясно.
@@ -129,7 +129,7 @@ export function HomePage() {
         </div>
 
         <div className="flex justify-center">
-          <svg width="280" height="280" viewBox="0 0 280 280">
+          <svg viewBox="0 0 280 280" className="w-full max-w-[280px] h-auto">
             {/* Външна рамка (ink) */}
             <circle cx="140" cy="140" r="135" fill="none" stroke="#0F172A" strokeOpacity="0.1" strokeWidth="1" />
             {/* Ирис - външна част (teal/logo blue) */}
@@ -197,7 +197,7 @@ export function HomePage() {
       </div>
 
       {/* Философия и Предимства (Тъмна секция) */}
-      <section className="bg-ink py-24 relative overflow-hidden mt-12 mb-12">
+      <section className="bg-ink py-16 md:py-24 relative overflow-hidden mt-12 mb-12">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           
           <div className="relative max-w-md mx-auto lg:mx-0 mt-8 lg:mt-0">
@@ -215,7 +215,7 @@ export function HomePage() {
                 className="w-full h-full object-cover bg-paper/20" 
               />
             </div>
-            <div className="absolute top-4 -right-8 lg:-right-12 z-30 w-32 h-32 md:w-36 md:h-36 bg-ink rounded-full flex items-center justify-center shadow-xl border border-white/10 text-paper">
+            <div className="absolute top-4 right-0 lg:-right-12 z-30 w-32 h-32 md:w-36 md:h-36 bg-ink rounded-full flex items-center justify-center shadow-xl border border-white/10 text-paper">
                <div className="text-center relative z-10 flex flex-col items-center mt-2">
                  <span className="text-3xl md:text-4xl font-display font-bold text-teal leading-none">15+</span>
                  <span className="text-[9px] md:text-[10px] uppercase tracking-widest mt-1 opacity-80">години опит</span>
@@ -234,7 +234,7 @@ export function HomePage() {
               <span className="text-teal font-medium tracking-widest uppercase text-sm mb-4 flex items-center gap-2">
                 <Award size={16} /> Философия
               </span>
-              <h2 className="text-4xl md:text-5xl font-display text-paper leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-paper leading-tight">
                 Защо да се доверите на нас за Вашето здраве
               </h2>
             </div>

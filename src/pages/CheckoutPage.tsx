@@ -6,6 +6,7 @@ import { useAuthStore } from '../store/authStore';
 import { createOrder } from '../api/orders';
 import { getEcontCities, getEcontOffices } from '../api/shipping';
 import type { DeliveryType } from '../types/Shipping';
+import { useDebouncedValue } from '../hooks/useDebouncedValue';
 
 export function CheckoutPage() {
   const { items, totalPrice } = useCartStore();
@@ -27,10 +28,13 @@ export function CheckoutPage() {
     if (items.length === 0) navigate('/cart');
   }, [isAuthenticated, items.length, navigate]);
 
+  const debouncedCitySearch = useDebouncedValue(citySearch.trim(), 300);
+
   const citiesQuery = useQuery({
-    queryKey: ['econt-cities', citySearch],
-    queryFn: () => getEcontCities(citySearch),
-    enabled: citySearch.length >= 2 && deliveryType === 'EcontOffice',
+    queryKey: ['econt-cities', debouncedCitySearch],
+    queryFn: () => getEcontCities(debouncedCitySearch),
+    enabled:
+      debouncedCitySearch.length >= 2 && deliveryType === 'EcontOffice' && selectedCityId === null,
   });
 
   const officesQuery = useQuery({
@@ -124,9 +128,8 @@ export function CheckoutPage() {
             ].map((option) => (
               <label
                 key={option.value}
-                className={`flex items-center gap-3 border rounded-xl px-4 py-3 cursor-pointer transition-colors ${
-                  deliveryType === option.value ? 'border-teal bg-teal/5' : 'border-ink/15'
-                }`}
+                className={`flex items-center gap-3 border rounded-xl px-4 py-3 cursor-pointer transition-colors ${deliveryType === option.value ? 'border-teal bg-teal/5' : 'border-ink/15'
+                  }`}
               >
                 <input
                   type="radio"
@@ -158,6 +161,11 @@ export function CheckoutPage() {
                   placeholder="напр. София"
                   className={inputClass}
                 />
+                {citiesQuery.isFetching && <p className="text-sm text-ink/40">Търсене...</p>}
+
+                {citiesQuery.data?.length === 0 && !citiesQuery.isFetching && selectedCityId === null && (
+                  <p className="text-sm text-ink/40">Няма намерени градове.</p>
+                )}
               </div>
 
               {citiesQuery.data && citiesQuery.data.length > 0 && selectedCityId === null && (
@@ -206,7 +214,7 @@ export function CheckoutPage() {
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
                 rows={3}
-                placeholder="Град, улица, номер, etaж, апартамент..."
+                placeholder="Град, улица, номер, етаж, апартамент..."
                 className={inputClass}
               />
             </div>
@@ -217,8 +225,8 @@ export function CheckoutPage() {
           <p className="text-red-600 text-sm">Грешка при създаване на поръчката. Опитай отново.</p>
         )}
 
-        <div className="flex items-center justify-between bg-paper/50 border border-ink/5 rounded-2xl p-5">
-          <span className="font-display text-xl text-ink">{totalPrice().toFixed(2)} лв.</span>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-paper/50 border border-ink/5 rounded-2xl p-5">
+          <span className="font-display text-xl text-ink">{totalPrice().toFixed(2)} €</span>
           <button
             type="submit"
             disabled={checkoutMutation.isPending || !isDeliveryValid}

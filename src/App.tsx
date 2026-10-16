@@ -22,14 +22,16 @@ import { AboutPage } from './pages/AboutPage';
 import { DoctorDetailPage } from './pages/DoctorDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { ConfirmAppointmentPage } from './pages/ConfirmAppointmentPage';
-
+import { ScrollToTop } from './components/ui/ScrollToTop';
 
 function App() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-paper flex flex-col">
+
       <Header />
+      <ScrollToTop />
       <AnimatePresence mode="wait">
         <motion.div
           key={location.pathname}
@@ -37,7 +39,7 @@ function App() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="flex-1"
+          className="flex-1 flex flex-col"
         >
           <Routes location={location}>
             <Route path="/" element={<HomePage />} />
@@ -94,11 +96,11 @@ function App() {
           </Routes>
         </motion.div>
       </AnimatePresence>
+
       <Footer />
+
       <ToastContainer />
-
     </div>
-
   );
 }
 
