@@ -17,7 +17,7 @@ export function OpticPage() {
     return (
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="h-10 w-32 bg-ink/8 rounded-full animate-pulse mb-8" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-3 sm:gap-x-6 gap-y-6 sm:gap-y-10">
           {Array.from({ length: 6 }).map((_, i) => (
             <ProductCardSkeleton key={i} />
           ))}
@@ -49,7 +49,7 @@ export function OpticPage() {
       <p className="text-ink/50 mt-2">Рамки, стъкла и лещи, подбрани с грижа.</p>
 
       {/* Анимирани филтри (Framer Motion Layout) */}
-      <div className="flex gap-3 mt-8 mb-12 flex-wrap">
+      <div className="flex gap-3 mt-8 mb-12 overflow-x-auto pb-2 -mx-6 px-6 sm:mx-0 sm:px-0 sm:flex-wrap">
         
         {/* Бутон "Всички" */}
         <button
