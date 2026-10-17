@@ -1,75 +1,63 @@
-# React + TypeScript + Vite
+# Vizus Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React single-page app for **Vizus**, an eye clinic with an optical shop: online appointment booking, a product catalog with checkout, and a full admin panel.
 
-Currently, two official plugins are available:
+> Portfolio project: a redesign concept built around the existing [vizus.bg](https://vizus.bg). Backend: [vizus-backend](https://github.com/Veselin47/vizus-backend).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Home page](docs/screenshots/home.png)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Public site**
+- Product catalog with category filters, cart, and Stripe Checkout
+- Delivery step with contact details and three options: clinic pickup, Econt office, or Econt to address (live city and office lookup)
+- Appointment booking in three steps: doctor, date, time slot (only free slots are shown)
+- Email confirmation link for every booking
+- Team page with doctor profiles and working hours
+- Fully responsive, with a mobile menu
 
-## Expanding the ESLint configuration
+**Admin panel** (role-protected)
+- CRUD for products, categories and doctors, with image upload
+- Appointments list with search, status/doctor/date filters and status changes
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+React 19 · TypeScript · Vite · Tailwind CSS v4 · React Router · TanStack Query · Zustand · Axios · Framer Motion · Lucide
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Prerequisites: Node.js (LTS) and the [backend](https://github.com/Veselin47/vizus-backend) running on `https://localhost:7144`.
 
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+The app runs on `http://localhost:5173`. That port is allowed by the backend's CORS policy, so keep it.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The API address is set in `src/api/axiosClient.ts` (`API_BASE_URL`).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project structure
 
 ```
+src/
+├── api/          # Axios client and one module per backend resource
+├── components/   # layout, ui and product components
+├── pages/        # route pages, admin/ for the admin panel
+├── store/        # Zustand stores: auth, cart, toasts
+├── types/        # TypeScript types matching backend DTOs
+├── hooks/        # reusable hooks
+└── utils/
+```
+
+## Design notes
+
+- The JWT is stored in Zustand (persisted) and attached to every request by an Axios interceptor.
+- The cart lives on the client; the server re-reads prices and stock when the order is created, so prices sent by the browser are never trusted.
+- Server state (products, doctors, slots) is handled by TanStack Query, which handles caching and refetching after mutations.
+
+## Known limitations
+
+- No automated tests yet
+- No handling of expired tokens (the user stays "logged in" in the UI after the token expires)
+- Not deployed yet
