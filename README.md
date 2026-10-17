@@ -2,7 +2,7 @@
 
 React single-page app for **Vizus**, an eye clinic with an optical shop: online appointment booking, a product catalog with checkout, and a full admin panel.
 
-> Portfolio project: a redesign concept built around the existing [vizus.bg](https://vizus.bg). Backend: [vizus-backend](https://github.com/Veselin47/vizus-backend).
+> Portfolio project: a redesign concept built around the existing [vizus.bg](https://vizus.bg). Backend: [vizus-backend](https://github.com/Veselin47/Vizus).
 
 ![Home page](docs/screenshots/home.png)
 
