@@ -47,19 +47,19 @@ export function Footer() {
                 <Clock size={16} className="mt-0.5 text-teal/70 shrink-0" />
                 <div>
                   <p className="text-paper">Понеделник - Петък</p>
-                  <p className="text-paper/50">09:00 - 18:00 ч.</p>
+                  <p className="text-paper/50">09:00 - 13:00 и 14:00 - 16:00</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 mt-2">
+              {/* <div className="flex items-start gap-3 mt-2">
                 <Clock size={16} className="mt-0.5 text-teal/70 shrink-0" />
                 <div>
                   <p className="text-paper">Събота</p>
                   <p className="text-paper/50">10:00 - 14:00 ч.</p>
                 </div>
-              </div>
+              </div> */}
               <div className="flex items-start gap-3 mt-2">
                 <span className="w-4 flex justify-center text-teal/70 shrink-0">—</span>
-                <p className="text-paper/50">Неделя: Почивен ден</p>
+                <p className="text-paper/50">Събота и Неделя: Почивен ден</p>
               </div>
             </div>
           </div>
@@ -68,17 +68,18 @@ export function Footer() {
           <div>
             <h3 className="text-sm text-teal font-medium uppercase tracking-wider mb-5">Контакти</h3>
             <div className="flex flex-col gap-4 text-sm text-paper/70">
-              <a href="https://maps.google.com/?q=ул.+Примерна+12,+София" target="_blank" rel="noreferrer" className="flex items-start gap-3 hover:text-paper transition-colors group">
+              <a href="https://www.google.com/maps/place/%D0%92%D0%98%D0%97%D0%A3%D0%A1+%D0%9E%D1%87%D0%B5%D0%BD+%D0%9C%D0%B5%D0%B4%D0%B8%D1%86%D0%B8%D0%BD%D1%81%D0%BA%D0%B8+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80/@43.1229196,25.6867831,20z/data=!4m15!1m8!3m7!1s0x40a929184d68a609:0x9b309ae6b2f97be8!2z0KbQtdC90YLRitGALCDRg9C7LiDigJ7QpdCw0L0g0JrRgNGD0LzigJwgNSwgNTEwMCDQk9C-0YDQvdCwINCe0YDRj9GF0L7QstC40YbQsA!3b1!8m2!3d43.1229656!4d25.6868139!16s%2Fg%2F11vsw2mtht!3m5!1s0x40a9291852481c59:0x41d63c331e3a7524!8m2!3d43.1230057!4d25.6868858!16s%2Fg%2F11clhrdp22?entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D
+              " target="_blank" rel="noreferrer" className="flex items-start gap-3 hover:text-paper transition-colors group">
                 <MapPin size={18} className="text-teal/70 group-hover:text-teal transition-colors shrink-0" />
-                <span className="leading-tight">ул. Примерна 12,<br/>гр. София, 1000</span>
+                <span className="leading-tight">ул. Хан Крум 5,<br/>гр. Горна Оряховица, 5100</span>
               </a>
-              <a href="tel:+359881234567" className="flex items-center gap-3 hover:text-paper transition-colors group">
+              <a href="tel:+359888266935" className="flex items-center gap-3 hover:text-paper transition-colors group">
                 <Phone size={18} className="text-teal/70 group-hover:text-teal transition-colors shrink-0" />
-                <span>+359 88 123 4567</span>
+                <span>+0618/64053, 0888266935</span>
               </a>
-              <a href="mailto:contact@vizus.bg" className="flex items-center gap-3 hover:text-paper transition-colors group">
+              <a href="mailto:office@vizus.bg" className="flex items-center gap-3 hover:text-paper transition-colors group">
                 <Mail size={18} className="text-teal/70 group-hover:text-teal transition-colors shrink-0" />
-                <span>contact@vizus.bg</span>
+                <span>office@vizus.bg</span>
               </a>
             </div>
           </div>

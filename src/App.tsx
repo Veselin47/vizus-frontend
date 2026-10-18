@@ -23,6 +23,7 @@ import { DoctorDetailPage } from './pages/DoctorDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { ConfirmAppointmentPage } from './pages/ConfirmAppointmentPage';
 import { ScrollToTop } from './components/ui/ScrollToTop';
+import { AdminOrdersPage } from './pages/admin/AdminOrdersPage';
 
 function App() {
   const location = useLocation();
@@ -53,6 +54,15 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/about/:id" element={<DoctorDetailPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
+
+            <Route
+              path="/admin/orders"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminOrdersPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/appointments/confirm" element={<ConfirmAppointmentPage />} />
             <Route
               path="/admin"

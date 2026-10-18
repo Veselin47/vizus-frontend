@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 const adminSections = [
   { title: 'Продукти', description: 'Добавяне на нови продукти в оптиката', path: '/admin/products' },
+  { title: 'Поръчки', description: 'Преглед на поръчките и доставките', path: '/admin/orders' },
   { title: 'Категории', description: 'Управление на категории продукти', path: '/admin/categories' },
   { title: 'Лекари', description: 'Добавяне на лекари и работно време', path: '/admin/doctors' },
   { title: 'Записани часове', description: 'Преглед и отказване на резервации', path: '/admin/appointments' },
